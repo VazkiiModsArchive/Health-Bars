@@ -1,29 +1,24 @@
 package net.minecraft.src;
 
-import net.minecraft.src.vazkii.updatemanager.IUMAdvanced;
-import net.minecraft.src.vazkii.updatemanager.IUpdateManager;
-import net.minecraft.src.vazkii.updatemanager.ModType;
-import net.minecraft.src.vazkii.updatemanager.UMCore;
-
 import org.lwjgl.input.Keyboard;
 
-public class mod_HealthBars extends BaseMod implements IUpdateManager, IUMAdvanced{
+import vazkii.um.UpdateManagerMod;
+
+public class mod_HealthBars extends BaseMod {
 	
 	public static KeyBinding key = new KeyBinding("Health Bars",Keyboard.KEY_B);
 	
-	public mod_HealthBars() {
-		UMCore.addMod(this);
+	public String getVersion() {
+		return "by Vazkii. Version [1.1.2] for 1.2.5";
+	}
+	
+	public void load() {
 		blacklistedEntities = readBlacklist(blackList);
 		barsEnabled = barsEnbaledOnStartup;
 		ModLoader.registerKey(this, key, true);
 		ModLoader.addName(healthDebuggerTool, "Vazkii co. Health Bars Blacklist Remote");
-	}
-
-	public String getVersion() {
-		return "by Vazkii. Version [1.1.1] for 1.2.5";
-	}
-	public void load() {
-		//BaseMod Abstract Method
+		
+		new UpdateHandler(this);
 	}
 	
 	public void keyboardEvent(KeyBinding event) {
@@ -33,9 +28,8 @@ public class mod_HealthBars extends BaseMod implements IUpdateManager, IUMAdvanc
 	}
 	
 	private String[] readBlacklist(String string){
-		String splitArgs = "[;]";
-		return string.split(splitArgs);
-		}
+		return string.split(";");
+	}
 	
     public static boolean isEntityBlackListed(Entity entity){
     	for(int k=0; k<mod_HealthBars.blacklistedEntities.length;k++){
@@ -78,25 +72,30 @@ public class mod_HealthBars extends BaseMod implements IUpdateManager, IUMAdvanc
 	public static String[] blacklistedEntities = {
 	};
 
-	public String getModName() {
-		return "Health Bars";
+	public class UpdateHandler extends UpdateManagerMod {
+		
+		public UpdateHandler(cpw.mods.fml.common.modloader.BaseMod m) {
+			super(m);
+		}
+
+		public String getModName() {
+			return "Health Bars";
+		}
+
+		public String getChangelogURL() {
+			return "https://dl.dropbox.com/u/34938401/Mods/On%20Topic/Mods/Health%20Bars/Changelog.txt";
+		}
+
+		public String getUpdateURL() {
+			return "https://dl.dropbox.com/u/34938401/Mods/On%20Topic/Mods/Health%20Bars/Version.txt";
+		}
+
+		public String getModURL() {
+			return "http://www.minecraftforum.net/topic/528166-123-mlforge-vazkiis-mods-ebonapi-last-updated-12512/";
+		}
+		
+		public String getUMVersion() {
+			return "1.1.2";
+		}
 	}
-
-	public String getChangelogURL() {
-		return "https://dl.dropbox.com/u/34938401/Mods/On%20Topic/Mods/Health%20Bars/Changelog.txt";
-	}
-
-	public String getUpdateURL() {
-		return "https://dl.dropbox.com/u/34938401/Mods/On%20Topic/Mods/Health%20Bars/Version.txt";
-	}
-
-	public String getModURL() {
-		return "http://www.minecraftforum.net/topic/528166-123-mlforge-vazkiis-mods-ebonapi-last-updated-12512/";
-	}
-
-	public ModType getModType() {
-		return ModType.UNDEFINED;
-	}
-
-
 }

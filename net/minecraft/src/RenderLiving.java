@@ -71,7 +71,7 @@ public class RenderLiving extends Render
         try
         {
             float var10 = this.func_48418_a(par1EntityLiving.prevRenderYawOffset, par1EntityLiving.renderYawOffset, par9);
-            float var11 = this.func_48418_a(par1EntityLiving.prevRotationYaw, par1EntityLiving.rotationYaw, par9);
+            float var11 = this.func_48418_a(par1EntityLiving.prevRotationYawHead, par1EntityLiving.rotationYawHead, par9);
             float var12 = par1EntityLiving.prevRotationPitch + (par1EntityLiving.rotationPitch - par1EntityLiving.prevRotationPitch) * par9;
             this.renderLivingAt(par1EntityLiving, par2, par4, par6);
             float var13 = this.handleRotationFloat(par1EntityLiving, par9);
@@ -220,6 +220,7 @@ public class RenderLiving extends Render
         OpenGlHelper.setActiveTexture(OpenGlHelper.defaultTexUnit);
         GL11.glEnable(GL11.GL_CULL_FACE);
         GL11.glPopMatrix();
+        this.passSpecialRender(par1EntityLiving, par2, par4, par6);
         
     	if(Minecraft.isGuiEnabled() && mod_HealthBars.barsEnabled && !par1EntityLiving.worldObj.isRemote)
     	renderHealthBar(par1EntityLiving, par2, (par4+mod_HealthBars.barHeight)  + par1EntityLiving.getEyeHeight(), par6, mod_HealthBars.renderDistance);
@@ -370,17 +371,6 @@ public class RenderLiving extends Render
             GL11.glPopMatrix();
         }
     }
-
-    /**
-     * Actually renders the given argument. This is a synthetic bridge method, always casting down its argument and then
-     * handing it off to a worker function which does the actual work. In all probabilty, the class Render is generic
-     * (Render<T extends Entity) and this method has signature public void doRender(T entity, double d, double d1,
-     * double d2, float f, float f1). But JAD is pre 1.5 so doesn't do that.
-     */
-    public void doRender(Entity par1Entity, double par2, double par4, double par6, float par8, float par9)
-    {
-        this.doRenderLiving((EntityLiving)par1Entity, par2, par4, par6, par8, par9);
-    }
     
     public void renderHealthBar(EntityLiving entityliving, double d, double d1, double d2, int i)
     {
@@ -404,8 +394,7 @@ public class RenderLiving extends Render
         GL11.glScalef(-f2, -f2, f2);                                       
         GL11.glDisable(2896 /*GL_LIGHTING*/);                              
         GL11.glDepthMask(false);                                        
-        GL11.glDisable(2929 /*GL_DEPTH_TEST*/);                          
-        GL11.glEnable(3042 /*GL_BLEND*/);                             
+        GL11.glDisable(2929 /*GL_DEPTH_TEST*/);                                                  
         GL11.glBlendFunc(770, 771);                                       
         Tessellator tessellator = Tessellator.instance;                   
         GL11.glDisable(3553 /*GL_TEXTURE_2D*/); 
@@ -454,10 +443,18 @@ public class RenderLiving extends Render
         GL11.glEnable(2929 /*GL_DEPTH_TEST*/);
         GL11.glDepthMask(true);
         GL11.glEnable(2896 /*GL_LIGHTING*/);
-        GL11.glDisable(3042 /*GL_BLEND*/);
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         GL11.glPopMatrix();
         }
-    
 
+    /**
+     * Actually renders the given argument. This is a synthetic bridge method, always casting down its argument and then
+     * handing it off to a worker function which does the actual work. In all probabilty, the class Render is generic
+     * (Render<T extends Entity) and this method has signature public void doRender(T entity, double d, double d1,
+     * double d2, float f, float f1). But JAD is pre 1.5 so doesn't do that.
+     */
+    public void doRender(Entity par1Entity, double par2, double par4, double par6, float par8, float par9)
+    {
+        this.doRenderLiving((EntityLiving)par1Entity, par2, par4, par6, par8, par9);
     }
+}
