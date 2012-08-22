@@ -2,9 +2,8 @@ package vazkii.healthbars.common;
 
 import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
-import cpw.mods.fml.common.Mod;
 import vazkii.codebase.common.VazkiiUpdateHandler;
-import vazkii.easyfps.client.EasyFPSReference;
+import cpw.mods.fml.common.Mod;
 
 public class HealthBarsUpdateHandler extends VazkiiUpdateHandler {
 
@@ -26,14 +25,14 @@ public class HealthBarsUpdateHandler extends VazkiiUpdateHandler {
 	public String getUpdateURL() {
 		return HealthBarsReference.UPDATE_URL;
 	}
-	
+
 	@Override
 	public String getChangelogURL() {
 		return HealthBarsReference.CHANGELOG_URL;
 	}
-	
+
 	@Override
-	public ItemStack getIconStack(){
+	public ItemStack getIconStack() {
 		return new ItemStack(Item.appleGold);
 	}
 
