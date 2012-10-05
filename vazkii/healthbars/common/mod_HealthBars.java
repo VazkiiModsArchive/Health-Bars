@@ -20,7 +20,9 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.TickRegistry;
 
-@Mod(modid = "healthbars_Vazkii", name = "Health Bars", version = "by Vazkii. Version [2.0] for 1.3.2") @NetworkMod(channels = { "healthbars_Vz" }, packetHandler = HealthBarsPacketHandler.class) public class mod_HealthBars {
+@Mod(modid = "healthbars_Vazkii", name = "Health Bars", version = "by Vazkii. Version [2.0.1] for 1.3.2")
+@NetworkMod(channels = { "healthbars_Vz" }, packetHandler = HealthBarsPacketHandler.class)
+public class mod_HealthBars {
 
 	public static boolean barsEnabled = true;
 

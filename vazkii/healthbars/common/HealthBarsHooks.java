@@ -101,8 +101,7 @@ public class HealthBarsHooks {
 			tessellator.addVertex(-maxHealth, 2, 0.0D);
 			tessellator.addVertex(health * 2 - maxHealth + 1, 2, 0.0D);
 			tessellator.addVertex(health * 2 - maxHealth, 0, 0.0D);
-		}
-		else {
+		} else {
 			tessellator.addVertex(-health - 1, 0, 0.0D);
 			tessellator.addVertex(-health, 2, 0.0D);
 			tessellator.addVertex(health + 1, 2, 0.0D);

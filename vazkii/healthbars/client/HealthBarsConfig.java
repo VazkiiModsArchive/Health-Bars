@@ -25,7 +25,8 @@ public class HealthBarsConfig extends Configuration {
 
 	public static List<String> blacklistedEntities = new LinkedList();
 
-	//Props Start ============================================================================
+	// Props Start
+	// ============================================================================
 	public static int maxRenderDistance = 20;
 	public static int maxHealthToRender = 150;
 	public static int minHealthToRender = 2;
@@ -43,7 +44,8 @@ public class HealthBarsConfig extends Configuration {
 	public static String barAggroRGB = "255,0,0";
 	public static String barPoisonedRGB = "76,255,0";
 
-	//Props End ==============================================================================
+	// Props End
+	// ==============================================================================
 
 	public HealthBarsConfig(File file) {
 		super(file);

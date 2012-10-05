@@ -25,7 +25,8 @@ public class HealthBarsTickHandler implements ITickHandler {
 	int ticksElapsed = 0;
 
 	@Override
-	public void tickStart(EnumSet<TickType> type, Object... tickData) {}
+	public void tickStart(EnumSet<TickType> type, Object... tickData) {
+	}
 
 	@Override
 	public void tickEnd(EnumSet<TickType> type, Object... tickData) {
