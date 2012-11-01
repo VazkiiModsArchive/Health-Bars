@@ -7,6 +7,8 @@ import java.util.EnumSet;
 import java.util.Iterator;
 import java.util.Set;
 
+import vazkii.codebase.common.CommonUtils;
+
 import net.minecraft.src.Entity;
 import net.minecraft.src.EntityLiving;
 import net.minecraft.src.EntityTracker;
@@ -15,7 +17,7 @@ import net.minecraft.src.IntHashMap;
 import net.minecraft.src.Packet250CustomPayload;
 import net.minecraft.src.Potion;
 import net.minecraft.src.WorldServer;
-import vazkii.codebase.common.CommonUtils;
+
 import cpw.mods.fml.common.ITickHandler;
 import cpw.mods.fml.common.TickType;
 import cpw.mods.fml.relauncher.ReflectionHelper;
@@ -31,7 +33,7 @@ public class HealthBarsTickHandler implements ITickHandler {
 	@Override
 	public void tickEnd(EnumSet<TickType> type, Object... tickData) {
 		++ticksElapsed;
-		if (type.equals(EnumSet.of(TickType.SERVER))) for (WorldServer world : CommonUtils.getServer().theWorldServer)
+		if (type.equals(EnumSet.of(TickType.SERVER))) for (WorldServer world : CommonUtils.getServer().worldServers)
 			sendPackets(world.getEntityTracker());
 	}
 

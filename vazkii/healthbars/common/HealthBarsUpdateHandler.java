@@ -1,8 +1,10 @@
 package vazkii.healthbars.common;
 
+import vazkii.codebase.common.VazkiiUpdateHandler;
+
 import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
-import vazkii.codebase.common.VazkiiUpdateHandler;
+
 import cpw.mods.fml.common.Mod;
 
 public class HealthBarsUpdateHandler extends VazkiiUpdateHandler {
