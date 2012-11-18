@@ -6,10 +6,12 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.TreeMap;
 
+import vazkii.healthbars.common.HealthBarsReference;
+
+import cpw.mods.fml.relauncher.ReflectionHelper;
+
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.Property;
-import vazkii.healthbars.common.HealthBarsReference;
-import cpw.mods.fml.relauncher.ReflectionHelper;
 
 public class HealthBarsConfig extends Configuration {
 
@@ -25,7 +27,8 @@ public class HealthBarsConfig extends Configuration {
 
 	public static List<String> blacklistedEntities = new LinkedList();
 
-	//Props Start ============================================================================
+	// Props Start
+	// ============================================================================
 	public static int maxRenderDistance = 20;
 	public static int maxHealthToRender = 150;
 	public static int minHealthToRender = 2;
@@ -43,7 +46,8 @@ public class HealthBarsConfig extends Configuration {
 	public static String barAggroRGB = "255,0,0";
 	public static String barPoisonedRGB = "76,255,0";
 
-	//Props End ==============================================================================
+	// Props End
+	// ==============================================================================
 
 	public HealthBarsConfig(File file) {
 		super(file);
@@ -53,41 +57,41 @@ public class HealthBarsConfig extends Configuration {
 
 		load();
 
-		Property propMaxRenderDistance = getOrCreateIntProperty("maxRenderDistance", CATEGORY_GENERAL, 20);
+		Property propMaxRenderDistance = get("maxRenderDistance", CATEGORY_GENERAL, 20);
 		propMaxRenderDistance.comment = "The max distance to render health bars.";
 		maxRenderDistance = propMaxRenderDistance.getInt(20);
 
-		Property propMaxHealthToRender = getOrCreateIntProperty("maxHealthToRender", CATEGORY_GENERAL, 150);
+		Property propMaxHealthToRender = get("maxHealthToRender", CATEGORY_GENERAL, 150);
 		propMaxHealthToRender.comment = "The maximum health that will have a health bar rendered.";
 		maxHealthToRender = propMaxHealthToRender.getInt(150);
 
-		Property propMinHealthToRender = getOrCreateIntProperty("minHealthToRender", CATEGORY_GENERAL, 2);
+		Property propMinHealthToRender = get("minHealthToRender", CATEGORY_GENERAL, 2);
 		propMinHealthToRender.comment = "The minimum health that will have a health bar rendered.";
 		minHealthToRender = propMinHealthToRender.getInt(150);
 
-		Property propHealthNumbers = getOrCreateBooleanProperty("healthNumbers", CATEGORY_GENERAL, true);
+		Property propHealthNumbers = get("healthNumbers", CATEGORY_GENERAL, true);
 		propHealthNumbers.comment = "Set to true to enable numerical health over the visual health bars.";
 		healthNumbers = propHealthNumbers.getBoolean(true);
 
-		Property propAlignLeft = getOrCreateBooleanProperty("alignLeft", CATEGORY_GENERAL, true);
+		Property propAlignLeft = get("alignLeft", CATEGORY_GENERAL, true);
 		propAlignLeft.comment = "Set to true to have the bar align to the left. Set to false to have it align to the center.";
 		alignLeft = propAlignLeft.getBoolean(true);
 
-		Property propRenderOnLookOnly = getOrCreateBooleanProperty("renderOnLookOnly", CATEGORY_GENERAL, false);
+		Property propRenderOnLookOnly = get("renderOnLookOnly", CATEGORY_GENERAL, false);
 		propRenderOnLookOnly.comment = "Set to true to have health bars render only if the entity is over the crosshair.";
 		renderOnLookOnly = propRenderOnLookOnly.getBoolean(false);
 
-		Property propBlacklistingMode = getOrCreateBooleanProperty("blacklistingMode", CATEGORY_GENERAL, false);
+		Property propBlacklistingMode = get("blacklistingMode", CATEGORY_GENERAL, false);
 		propBlacklistingMode.comment = "Set to true to enable blacklisting mode (in the corner of the screen, the mob's name you're looking at appears, so you can add it into the blacklist).";
 		blacklistingMode = propBlacklistingMode.getBoolean(false);
 
-		Property propBlacklist = getOrCreateProperty("blacklist", CATEGORY_GENERAL, HealthBarsReference.DEFAULT_BLACKLIST);
+		Property propBlacklist = get("blacklist", CATEGORY_GENERAL, HealthBarsReference.DEFAULT_BLACKLIST);
 		propBlacklist.comment = "Mobs with their names in the blacklist won't have health bars, separate mob names with ';'.";
 		blacklist = propBlacklist.value;
 		blacklistedEntities.addAll(Arrays.asList(blacklist.split(";")));
 
 		for (int i = 0; i < RGB_TO_GET.length; i++) {
-			Property propRgb = getOrCreateProperty(RGB_TO_GET[i], CATEGORY_COLORS, getField(RGB_TO_GET[i]));
+			Property propRgb = get(RGB_TO_GET[i], CATEGORY_COLORS, getField(RGB_TO_GET[i]));
 			propRgb.comment = String.format("The RGB color of the %s.", RGB_NAMES[i]);
 			String[] tokens = propRgb.value.split(",");
 			for (int j = 0; j < 3; j++)

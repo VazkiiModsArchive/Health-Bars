@@ -3,11 +3,12 @@ package vazkii.healthbars.client;
 import java.util.Arrays;
 import java.util.List;
 
-import net.minecraft.src.Entity;
 import vazkii.codebase.client.ClientUtils;
 import vazkii.codebase.client.CornerTextEntry;
 import vazkii.codebase.client.ICornerTextHandler;
 import vazkii.codebase.common.CommonUtils;
+
+import net.minecraft.src.Entity;
 
 public class HealthBarsCornerTextHandler implements ICornerTextHandler {
 
