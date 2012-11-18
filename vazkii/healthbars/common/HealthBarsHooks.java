@@ -3,7 +3,13 @@ package vazkii.healthbars.common;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+import org.lwjgl.opengl.GL11;
+
+import vazkii.codebase.client.ClientUtils;
+import vazkii.codebase.common.CommonUtils;
+import vazkii.healthbars.client.HealthBarsConfig;
 import net.minecraft.client.Minecraft;
+
 import net.minecraft.src.Entity;
 import net.minecraft.src.EntityLiving;
 import net.minecraft.src.EntityPlayer;
@@ -12,15 +18,10 @@ import net.minecraft.src.Frustrum;
 import net.minecraft.src.RenderManager;
 import net.minecraft.src.Tessellator;
 import net.minecraft.src.Vec3;
+
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
-
-import org.lwjgl.opengl.GL11;
-
-import vazkii.codebase.client.ClientUtils;
-import vazkii.codebase.common.CommonUtils;
-import vazkii.healthbars.client.HealthBarsConfig;
 
 public class HealthBarsHooks {
 
@@ -101,8 +102,7 @@ public class HealthBarsHooks {
 			tessellator.addVertex(-maxHealth, 2, 0.0D);
 			tessellator.addVertex(health * 2 - maxHealth + 1, 2, 0.0D);
 			tessellator.addVertex(health * 2 - maxHealth, 0, 0.0D);
-		}
-		else {
+		} else {
 			tessellator.addVertex(-health - 1, 0, 0.0D);
 			tessellator.addVertex(-health, 2, 0.0D);
 			tessellator.addVertex(health + 1, 2, 0.0D);

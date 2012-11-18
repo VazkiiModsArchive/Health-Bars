@@ -31,7 +31,7 @@ public class HealthBarsKeyHandler extends KeyHandler {
 
 	@Override
 	public void keyDown(EnumSet<TickType> types, KeyBinding kb, boolean tickEnd, boolean isRepeat) {
-		if (!types.equals(EnumSet.of(TickType.CLIENT))) return;
+		if (!types.equals(EnumSet.of(TickType.CLIENT)) || !tickEnd) return;
 
 		File cacheFile = IOUtils.getCacheFile(EnumVazkiiMods.HEALTH_BARS);
 		NBTTagCompound comp = IOUtils.getTagCompoundInFile(cacheFile);
